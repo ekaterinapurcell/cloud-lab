@@ -1,9 +1,15 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/cloud-lab:$COMMIT_SHA', '.']
+    args:
+      - build
+      - -t
+      - us-central1-docker.pkg.dev/project-0406b097-50f4-4b54-9be/cloud-lab-repo/cloud-lab:$COMMIT_SHA
+      - .
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/cloud-lab:$COMMIT_SHA']
+    args:
+      - push
+      - us-central1-docker.pkg.dev/project-0406b097-50f4-4b54-9be/cloud-lab-repo/cloud-lab:$COMMIT_SHA
 
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
@@ -11,14 +17,14 @@ steps:
       - run
       - deploy
       - cloud-lab
-      - --image=gcr.io/$PROJECT_ID/cloud-lab:$COMMIT_SHA
+      - --image=us-central1-docker.pkg.dev/project-0406b097-50f4-4b54-9be/cloud-lab-repo/cloud-lab:$COMMIT_SHA
       - --region=us-central1
       - --platform=managed
       - --allow-unauthenticated
       - --port=5000
 
 images:
-  - 'gcr.io/$PROJECT_ID/cloud-lab:$COMMIT_SHA'
+  - us-central1-docker.pkg.dev/project-0406b097-50f4-4b54-9be/cloud-lab-repo/cloud-lab:$COMMIT_SHA
 
 options:
   logging: CLOUD_LOGGING_ONLY
