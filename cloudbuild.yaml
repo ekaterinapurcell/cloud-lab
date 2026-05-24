@@ -19,3 +19,6 @@ steps:
 
 images:
   - 'gcr.io/$PROJECT_ID/cloud-lab:$COMMIT_SHA'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
