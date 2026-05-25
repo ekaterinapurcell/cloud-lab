@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: cloud-lab
-        image: cloud-lab:v1
-        imagePullPolicy: Never        
+        image: cloud-lab:v2
+        imagePullPolicy: Never
         ports:
         - containerPort: 5000
